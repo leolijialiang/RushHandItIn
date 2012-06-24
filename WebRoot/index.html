@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>HandItIn PRoJeCTo</title>
+<link rel="stylesheet" type="text/css" href="CSS/Style.css" />
+<script type="text/javascript" src="Script/jquery-1.2.6.min.js"></script>
+<script type="text/javascript">
+
+
+function slideSwitch() {
+    var $active = $('#slideshow IMG.active');
+    if ( $active.length == 0 ) $active = $('#slideshow IMG:last');
+
+
+    var $next =  $active.next().length ? $active.next()
+        : $('#slideshow IMG:first');
+ 
+    var $sibs  = $active.siblings();
+    var rndNum = Math.floor(Math.random() * $sibs.length );
+    var $next  = $( $sibs[ rndNum ] );
+    $active.addClass('last-active');
+
+    $next.css({opacity: 0.0})
+        .addClass('active')
+        .animate({opacity: 1.0}, 1000, function() {
+            $active.removeClass('active last-active');
+        });
+}
+
+$(function() {
+    setInterval( "slideSwitch()", 5000 );
+});
+
+</script>
+
+</head>
+
+<body>
+
+<div id="MainContainer">
+	   
+    <div id="header">
+	</div>
+    <div class="LoginBlock">
+    <div class="LoginBlockWelcom">
+    <p>Welcome to HanditIN</p>
+    </div>
+    <div class="LoginBlockForm">
+    <form name="login" action="login.jsp" method="post">
+    <input type="text" name="usrname" value="User Name Here" class="LoginTxt"  onfocus="if(this.value == this.defaultValue) this.value = ''"/>
+    <input type="password" name="usrpass" value="Passwords Here" class="LoginTxt" onfocus="if(this.value == this.defaultValue) this.value = ''"/>
+    <a href="register.jsp"><button type="button" class="LoginBut" >Register!</button></a>
+    <input type="submit" value="Login" class="LoginBut" style="margin-left:35px; outline:none;"/>
+    </form>
+    </div>
+	</div>
+	
+    <div id="slideshow">
+    <img src="images/img1.jpg" alt="" class="active" />
+    <img src="images/img2.jpg" alt="" />
+    <img src="images/img3.jpg" alt="" />
+	</div>
+
+    <div id="footer">
+    </div>
+</div>
+
+</body>
+</html>
